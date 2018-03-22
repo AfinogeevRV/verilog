@@ -1,0 +1,116 @@
+#! c:/iverilog-x64/bin/vvp
+:ivl_version "10.1 (stable)" "(v10_1_1)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0000000000335790 .scope module, "test_counter" "test_counter" 2 1;
+ .timescale 0 0;
+v00000000009d70a0_0 .var "clk", 0 0;
+v00000000009d7140_0 .net "data_cnt", 7 0, v0000000000339d70_0;  1 drivers
+v00000000009d71e0_0 .var "reset", 0 0;
+v0000000000395000_0 .var "wdata", 7 0;
+v00000000003950a0_0 .var "wr", 0 0;
+E_0000000000334500 .event posedge, v000000000033ae40_0;
+S_00000000009d6e80 .scope module, "counter_inst" "counter" 2 8, 3 1 0, S_0000000000335790;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "reset"
+    .port_info 1 /INPUT 1 "clk"
+    .port_info 2 /INPUT 8 "wdata"
+    .port_info 3 /INPUT 1 "wr"
+    .port_info 4 /OUTPUT 8 "data"
+v000000000033ae40_0 .net "clk", 0 0, v00000000009d70a0_0;  1 drivers
+v0000000000339d70_0 .var "data", 7 0;
+v0000000000335910_0 .net "reset", 0 0, v00000000009d71e0_0;  1 drivers
+v00000000003359b0_0 .net "wdata", 7 0, v0000000000395000_0;  1 drivers
+v00000000009d7000_0 .net "wr", 0 0, v00000000003950a0_0;  1 drivers
+E_00000000003346c0 .event posedge, v0000000000335910_0, v000000000033ae40_0;
+    .scope S_00000000009d6e80;
+T_0 ;
+    %wait E_00000000003346c0;
+    %load/vec4 v0000000000335910_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0000000000339d70_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v00000000009d7000_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.2, 8;
+    %load/vec4 v00000000003359b0_0;
+    %assign/vec4 v0000000000339d70_0, 0;
+    %vpi_call 3 15 "$display", "written %h", v00000000003359b0_0 {0 0 0};
+    %jmp T_0.3;
+T_0.2 ;
+    %load/vec4 v0000000000339d70_0;
+    %addi 1, 0, 8;
+    %assign/vec4 v0000000000339d70_0, 0;
+T_0.3 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0000000000335790;
+T_1 ;
+    %delay 10, 0;
+    %load/vec4 v00000000009d70a0_0;
+    %inv;
+    %store/vec4 v00000000009d70a0_0, 0, 1;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0000000000335790;
+T_2 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00000000009d70a0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00000000009d71e0_0, 0, 1;
+    %pushi/vec4 0, 0, 8;
+    %store/vec4 v0000000000395000_0, 0, 8;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00000000003950a0_0, 0, 1;
+    %delay 50, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v00000000009d71e0_0, 0, 1;
+    %delay 4, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00000000009d71e0_0, 0, 1;
+    %delay 50, 0;
+    %wait E_0000000000334500;
+    %delay 0, 0;
+    %pushi/vec4 85, 0, 8;
+    %store/vec4 v0000000000395000_0, 0, 8;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v00000000003950a0_0, 0, 1;
+    %wait E_0000000000334500;
+    %delay 0, 0;
+    %pushi/vec4 0, 0, 8;
+    %store/vec4 v0000000000395000_0, 0, 8;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v00000000003950a0_0, 0, 1;
+    %end;
+    .thread T_2;
+    .scope S_0000000000335790;
+T_3 ;
+    %delay 400, 0;
+    %vpi_call 2 53 "$finish" {0 0 0};
+    %end;
+    .thread T_3;
+    .scope S_0000000000335790;
+T_4 ;
+    %vpi_call 2 59 "$dumpfile", "out.vcd" {0 0 0};
+    %vpi_call 2 60 "$dumpvars", 32'sb00000000000000000000000000000000, S_0000000000335790 {0 0 0};
+    %end;
+    .thread T_4;
+    .scope S_0000000000335790;
+T_5 ;
+    %vpi_call 2 65 "$monitor", $stime, " ", v00000000009d71e0_0, " ", v00000000009d70a0_0, " ", " ", v0000000000395000_0, " ", v00000000003950a0_0, " ", v00000000009d7140_0 {0 0 0};
+    %end;
+    .thread T_5;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "test_counter.v";
+    "counter.v";

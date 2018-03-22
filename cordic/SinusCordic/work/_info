@@ -1,0 +1,151 @@
+m255
+K3
+13
+cModel Technology
+Z0 dD:\altera\11.1\modelsim_ase
+vcordic
+Z1 !s100 BYMVHQH?K]AUUJiR82R>]3
+Z2 IRSkUPCBT=hoeoPnF[FX_;3
+Z3 VZ`;7h>6VgEO>n@VeYSFYL2
+Z4 dD:\modelsim\SinusCordic
+Z5 w1509609822
+Z6 8cordic.v
+Z7 Fcordic.v
+L0 1
+Z8 OV;L;10.0c;49
+r1
+!s85 0
+31
+Z9 !s108 1510142453.729000
+Z10 !s107 rotator.v|select_quarter.v|reset_block.v|step_control.v|cordic.v|SinusGen.v|test_bench.v|
+Z11 !s90 -reportprogress|300|test_bench.v|SinusGen.v|cordic.v|step_control.v|reset_block.v|select_quarter.v|rotator.v|
+!s101 -O0
+o-O0
+vreset_block
+Z12 !s100 1o:znHWHkc]GS[@Cc2c^k1
+Z13 IkKg1X<DIG0UJQ_1DhShPT3
+Z14 VMXcbM=EN<d4I8:V:kWK3k2
+R4
+Z15 w1509006602
+Z16 8reset_block.v
+Z17 Freset_block.v
+L0 1
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!s101 -O0
+o-O0
+vrotator
+Z18 !s100 ClQE4PMPAIQ87m_[k?7O^1
+Z19 IA1DFEXn@FYc?Bz<?7:Q?m1
+Z20 V@^0@O_;41Sg6:@ObCDCz@3
+R4
+Z21 w1509608565
+Z22 8rotator.v
+Z23 Frotator.v
+L0 1
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!s101 -O0
+o-O0
+vselect_quarter
+Z24 !s100 Ifd0jT7PTg`=jIIJn2EC_2
+Z25 I=oclMG5jdI3QbE<fM`o5P2
+Z26 V>]`]nGah6[P8C1O0_F?<?0
+R4
+Z27 w1509006606
+Z28 8select_quarter.v
+Z29 Fselect_quarter.v
+L0 1
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!s101 -O0
+o-O0
+vSinus10kHz
+Z30 If;T1CB7oeJgH_3i^WN2`f0
+Z31 VLF:lPEA=G3=70ljJIn?LL2
+Z32 dC:\Users\Rustik\Desktop\modelsim
+Z33 w1509617195
+Z34 8Sinus10kHz.v
+Z35 FSinus10kHz.v
+L0 1
+R8
+r1
+31
+Z36 !s108 1509617201.062000
+Z37 !s107 rotator.v|select_quarter.v|reset_block.v|step_control.v|cordic.v|Sinus10kHz.v|test_bench.v|
+Z38 !s90 -reportprogress|300|test_bench.v|Sinus10kHz.v|cordic.v|step_control.v|reset_block.v|select_quarter.v|rotator.v|
+o-O0
+Z39 n@sinus10k@hz
+Z40 !s100 ^mjOfN_T7]=zlU^7h?e=z3
+!s85 0
+!s101 -O0
+vSinusGen
+!s100 k[48@m5_aCSJ4F1@5M2b23
+IQ[Bi:Go^IjX`SP^dgMBmc3
+VXi3Y`cF1DY@BdiUCGeKFi0
+R4
+w1510142449
+Z41 8SinusGen.v
+Z42 FSinusGen.v
+L0 1
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!s101 -O0
+o-O0
+Z43 n@sinus@gen
+vstep_control
+Z44 !s100 a=2gB39?gLAVK_NShXDOa1
+Z45 I9>EfhURL[PVKVePk9<aJk0
+Z46 VKcKWMAKZg^BU1zP6^0Y3n0
+R4
+Z47 w1509523267
+Z48 8step_control.v
+Z49 Fstep_control.v
+L0 1
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!s101 -O0
+o-O0
+vtest_bench
+Z50 !s100 Ne46>K8kBmBdZiF<fQg<o3
+Z51 If4Y7SeYZVmnTnTDf96MJ20
+Z52 VEJNK5ZO7TWUP1egUA9^TR1
+R4
+Z53 w1509619842
+Z54 8test_bench.v
+Z55 Ftest_bench.v
+L0 2
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!s101 -O0
+o-O0

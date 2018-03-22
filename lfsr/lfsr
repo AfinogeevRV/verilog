@@ -1,0 +1,175 @@
+#! c:/iverilog-x64/bin/vvp
+:ivl_version "10.1 (stable)" "(v10_1_1)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_00000000006e59d0 .scope module, "tlfsr" "tlfsr" 2 1;
+ .timescale 0 0;
+v00000000006f42a0_0 .var "clk", 0 0;
+v0000000000752da0_0 .var "en", 0 0;
+v0000000000752e40_0 .var "rst", 0 0;
+v0000000000752ee0_0 .net "wrandom1", 31 0, L_0000000000751900;  1 drivers
+v0000000000752f80_0 .net "wrandom2", 31 0, L_0000000000751ba0;  1 drivers
+v0000000000753020_0 .net "wrandom_lb1", 7 0, L_0000000000753160;  1 drivers
+v00000000007530c0_0 .net "wrandom_lb2", 7 0, L_00000000007535c0;  1 drivers
+S_0000000000806e80 .scope module, "u_lfsr1" "lfsr" 2 12, 3 1 0, S_00000000006e59d0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "rst"
+    .port_info 1 /INPUT 1 "clk"
+    .port_info 2 /INPUT 1 "enable"
+    .port_info 3 /OUTPUT 32 "out"
+    .port_info 4 /OUTPUT 8 "out_lb"
+    .port_info 5 /INPUT 32 "init_reg"
+L_0000000000751900 .functor BUFZ 32, v00000000006f36c0_0, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
+L_0000000000751970 .functor XOR 1, L_0000000000753200, L_00000000007532a0, C4<0>, C4<0>;
+L_00000000007519e0 .functor XOR 1, L_0000000000751970, L_0000000000753340, C4<0>, C4<0>;
+L_0000000000751a50 .functor XOR 1, L_00000000007519e0, L_00000000007533e0, C4<0>, C4<0>;
+L_0000000000751ac0 .functor XOR 1, L_0000000000751a50, L_0000000000753480, C4<0>, C4<0>;
+L_0000000000751b30 .functor XOR 1, L_0000000000751ac0, L_0000000000753520, C4<0>, C4<0>;
+v00000000006f2b80_0 .net *"_s11", 0 0, L_0000000000753340;  1 drivers
+v00000000006f2c20_0 .net *"_s12", 0 0, L_00000000007519e0;  1 drivers
+v00000000006f2d60_0 .net *"_s15", 0 0, L_00000000007533e0;  1 drivers
+v00000000006f2e00_0 .net *"_s16", 0 0, L_0000000000751a50;  1 drivers
+v00000000006f2ea0_0 .net *"_s19", 0 0, L_0000000000753480;  1 drivers
+v00000000006f2f40_0 .net *"_s20", 0 0, L_0000000000751ac0;  1 drivers
+v00000000006f2fe0_0 .net *"_s23", 0 0, L_0000000000753520;  1 drivers
+v00000000006f3080_0 .net *"_s5", 0 0, L_0000000000753200;  1 drivers
+v00000000006f3120_0 .net *"_s7", 0 0, L_00000000007532a0;  1 drivers
+v00000000006f31c0_0 .net *"_s8", 0 0, L_0000000000751970;  1 drivers
+v00000000006f3260_0 .net "clk", 0 0, v00000000006f42a0_0;  1 drivers
+v00000000006f3300_0 .net "enable", 0 0, v0000000000752da0_0;  1 drivers
+L_0000000001f30088 .functor BUFT 1, C4<10010111010011001010001101010001>, C4<0>, C4<0>, C4<0>;
+v00000000006f33a0_0 .net "init_reg", 31 0, L_0000000001f30088;  1 drivers
+v00000000006f3440_0 .net "next_bit", 0 0, L_0000000000751b30;  1 drivers
+v00000000006f34e0_0 .net "out", 31 0, L_0000000000751900;  alias, 1 drivers
+v00000000006f3580_0 .net "out_lb", 7 0, L_0000000000753160;  alias, 1 drivers
+v00000000006f3620_0 .net "rst", 0 0, v0000000000752e40_0;  1 drivers
+v00000000006f36c0_0 .var "shift_reg", 31 0;
+E_00000000006f7a00 .event posedge, v00000000006f3620_0, v00000000006f3260_0;
+L_0000000000753160 .part v00000000006f36c0_0, 0, 8;
+L_0000000000753200 .part v00000000006f36c0_0, 31, 1;
+L_00000000007532a0 .part v00000000006f36c0_0, 30, 1;
+L_0000000000753340 .part v00000000006f36c0_0, 29, 1;
+L_00000000007533e0 .part v00000000006f36c0_0, 27, 1;
+L_0000000000753480 .part v00000000006f36c0_0, 25, 1;
+L_0000000000753520 .part v00000000006f36c0_0, 0, 1;
+S_0000000000807000 .scope module, "u_lfsr2" "lfsr" 2 21, 3 1 0, S_00000000006e59d0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "rst"
+    .port_info 1 /INPUT 1 "clk"
+    .port_info 2 /INPUT 1 "enable"
+    .port_info 3 /OUTPUT 32 "out"
+    .port_info 4 /OUTPUT 8 "out_lb"
+    .port_info 5 /INPUT 32 "init_reg"
+L_0000000000751ba0 .functor BUFZ 32, v00000000006f4200_0, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
+L_0000000000751c10 .functor XOR 1, L_0000000000753660, L_0000000000753700, C4<0>, C4<0>;
+L_0000000000751c80 .functor XOR 1, L_0000000000751c10, L_00000000007537a0, C4<0>, C4<0>;
+L_0000000000751cf0 .functor XOR 1, L_0000000000751c80, L_0000000000753840, C4<0>, C4<0>;
+L_0000000000751d60 .functor XOR 1, L_0000000000751cf0, L_00000000007538e0, C4<0>, C4<0>;
+L_0000000000751dd0 .functor XOR 1, L_0000000000751d60, L_0000000000753980, C4<0>, C4<0>;
+v00000000006f3760_0 .net *"_s11", 0 0, L_00000000007537a0;  1 drivers
+v00000000006f3800_0 .net *"_s12", 0 0, L_0000000000751c80;  1 drivers
+v00000000006f38a0_0 .net *"_s15", 0 0, L_0000000000753840;  1 drivers
+v00000000006f3940_0 .net *"_s16", 0 0, L_0000000000751cf0;  1 drivers
+v00000000006f39e0_0 .net *"_s19", 0 0, L_00000000007538e0;  1 drivers
+v00000000006f3a80_0 .net *"_s20", 0 0, L_0000000000751d60;  1 drivers
+v00000000006f3b20_0 .net *"_s23", 0 0, L_0000000000753980;  1 drivers
+v00000000006f3bc0_0 .net *"_s5", 0 0, L_0000000000753660;  1 drivers
+v00000000006f3c60_0 .net *"_s7", 0 0, L_0000000000753700;  1 drivers
+v00000000006f3d00_0 .net *"_s8", 0 0, L_0000000000751c10;  1 drivers
+v00000000006f3da0_0 .net "clk", 0 0, v00000000006f42a0_0;  alias, 1 drivers
+v00000000006f3e40_0 .net "enable", 0 0, v0000000000752da0_0;  alias, 1 drivers
+L_0000000001f300d0 .functor BUFT 1, C4<01011000001010010100100001111010>, C4<0>, C4<0>, C4<0>;
+v00000000006f3ee0_0 .net "init_reg", 31 0, L_0000000001f300d0;  1 drivers
+v00000000006f3f80_0 .net "next_bit", 0 0, L_0000000000751dd0;  1 drivers
+v00000000006f4020_0 .net "out", 31 0, L_0000000000751ba0;  alias, 1 drivers
+v00000000006f40c0_0 .net "out_lb", 7 0, L_00000000007535c0;  alias, 1 drivers
+v00000000006f4160_0 .net "rst", 0 0, v0000000000752e40_0;  alias, 1 drivers
+v00000000006f4200_0 .var "shift_reg", 31 0;
+L_00000000007535c0 .part v00000000006f4200_0, 0, 8;
+L_0000000000753660 .part v00000000006f4200_0, 31, 1;
+L_0000000000753700 .part v00000000006f4200_0, 30, 1;
+L_00000000007537a0 .part v00000000006f4200_0, 29, 1;
+L_0000000000753840 .part v00000000006f4200_0, 27, 1;
+L_00000000007538e0 .part v00000000006f4200_0, 25, 1;
+L_0000000000753980 .part v00000000006f4200_0, 0, 1;
+    .scope S_0000000000806e80;
+T_0 ;
+    %wait E_00000000006f7a00;
+    %load/vec4 v00000000006f3620_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %load/vec4 v00000000006f33a0_0;
+    %assign/vec4 v00000000006f36c0_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v00000000006f3300_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.2, 8;
+    %load/vec4 v00000000006f3440_0;
+    %load/vec4 v00000000006f36c0_0;
+    %parti/s 31, 1, 2;
+    %concat/vec4; draw_concat_vec4
+    %assign/vec4 v00000000006f36c0_0, 0;
+T_0.2 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0000000000807000;
+T_1 ;
+    %wait E_00000000006f7a00;
+    %load/vec4 v00000000006f4160_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.0, 8;
+    %load/vec4 v00000000006f3ee0_0;
+    %assign/vec4 v00000000006f4200_0, 0;
+    %jmp T_1.1;
+T_1.0 ;
+    %load/vec4 v00000000006f3e40_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.2, 8;
+    %load/vec4 v00000000006f3f80_0;
+    %load/vec4 v00000000006f4200_0;
+    %parti/s 31, 1, 2;
+    %concat/vec4; draw_concat_vec4
+    %assign/vec4 v00000000006f4200_0, 0;
+T_1.2 ;
+T_1.1 ;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_00000000006e59d0;
+T_2 ;
+    %delay 1, 0;
+    %load/vec4 v00000000006f42a0_0;
+    %inv;
+    %store/vec4 v00000000006f42a0_0, 0, 1;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_00000000006e59d0;
+T_3 ;
+    %vpi_call 2 35 "$dumpfile", "out.vcd" {0 0 0};
+    %vpi_call 2 36 "$dumpvars", 32'sb00000000000000000000000000000000, S_00000000006e59d0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v00000000006f42a0_0, 0;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0000000000752e40_0, 0;
+    %delay 5, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0000000000752e40_0, 0;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0000000000752da0_0, 0;
+    %delay 100, 0;
+    %vpi_call 2 44 "$finish" {0 0 0};
+    %end;
+    .thread T_3;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tlfsr.v";
+    "lfsr.v";
