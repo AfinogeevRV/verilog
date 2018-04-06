@@ -134,11 +134,7 @@ begin
 	if(rst)
 		mosi_r <= tx[size-1];
 	else if(en)
-	begin
 		mosi_r <= tx[size-1-cnt];
-		//if(cnt>=size-1)
-		//	mosi_r <= tx[size-1];
-	end
 	else if(!en)
 		mosi_r <= tx[size-1];
 end
