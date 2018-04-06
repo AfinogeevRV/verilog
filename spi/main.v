@@ -1,78 +1,136 @@
-module main(
-	input wire clk,
-	//spi_master//
-	output wire mas_sck,
-	input wire mas_sdin,
-	output wire mas_sdout,
-	//spi_slave//
-	input wire sl_sck,
-	input wire sl_sdin,
-	output wire sl_sdout,
-	//leds//
-	output wire led1,
-	output wire led2,
-	output wire led3,
-	//key//
-	input wire button
-);
+module MAIN (clk, ss_s, sck_s, miso_s, mosi_s, sck_m, miso_m, mosi_m, ss_m);
 
-reg reset;
-assign led1 = button;
-reg led2_r, led3_r;
-assign led2 = led2_r;
-assign led3 = led3_r; 
-reg [7:0] data;
+input clk;
+input ss_s;
+input sck_s;
+output miso_s;
+input mosi_s;
+output sck_m;
+input miso_m;
+output mosi_m;
+output ss_m;
+	
+wire rst;
+RESET reset(.rst(rst),.clk(clk));
 
-//spi_master//
-wire [7:0] mas_rdata;
-reg [7:0] mas_tdata;
-wire mas_ms = button;
-spi_master mas(
-	clk,
-	reset,
-	mas_ms,
-	mas_sck,
-	mas_sdin,
-	mas_sdout,
-	mas_rdata,
-	mas_tdata
-);
-////////////
+reg [7:0] tx_s = 8'h55;
+wire [7:0] rx_s;
+reg [7:0] tx_m = 8'h55;
+wire [7:0] rx_m;
 
-//spi slave//
-wire [7:0] sl_rdata;
-reg [7:0] sl_tdata;
-wire sl_ss = button;
-spi_slave sl(	
-	reset,
-	sl_ss,
-	sl_sck,
-	sl_sdin,
-	sl_sdout,
-	sl_rdata,
-	sl_tdata
-);
-//////////////
+reg en_m_r;
+wire en_m = en_m_r;
+assign ss_m = ~en_m_r;
 
-//reset//
-reg [31:0]rst_delay = 0;
-always @(posedge clk)
-rst_delay <= { rst_delay[30:0], 1'b1 };
-always @*
-reset = ~rst_delay[31];
 
-always @(posedge reset)
+reg led_r;
+assign led = led_r;
+
+//assign tx_w = tx;
+
+defparam spi_s.size = 8;
+SPI_SLAVE spi_s(rst, ss_s, sck_s, miso_s, mosi_s, tx_s, rx_s);
+
+SPI_MASTER spi_m(rst, clk, en_m, sck_m, miso_m, mosi_m, tx_m, rx_m);
+
+reg delay_enable;
+wire delay_done;
+reg [31:0] delay_time;
+DELAY_MS delay_ms(.rst(rst),.clk(clk),.enable(delay_enable),.done(delay_done),.ms(delay_time));
+
+reg [3:0] state;
+
+always @(posedge rst or posedge clk)
 begin
-	sl_tdata <= 8'h23;
-	mas_tdata <= 8'hf1;
-	data <= 8'h23;
+	if(rst)
+	begin
+		en_m_r <= 0; state <= 0;
+	end
+	else if(clk)
+	begin
+		case(state)
+		0:
+		begin
+			en_m_r <= 0;
+			state <= state + 1;
+		end
+		1:
+		begin
+			delay_time <= 5;
+			delay_enable <= 1;
+			if(delay_done)
+			begin
+				delay_enable <= 0;
+				state <= state + 1;
+			end
+		end
+		2:
+		begin
+			en_m_r <= 1;
+			state <= state + 1;
+		end
+		3:
+		begin
+			delay_time <= 1;
+			delay_enable <= 1;
+			if(delay_done)
+			begin
+				delay_enable <= 0;
+				state <= state + 1;
+			end
+		end
+		4:
+		begin
+			en_m_r <= 0;
+			state <= state + 1;
+		end
+		5:
+		begin
+			delay_time <= 5;
+			delay_enable <= 1;
+			if(delay_done)
+			begin
+				delay_enable <= 0;
+				state <= state + 1;
+			end
+		end
+		default:
+			state <= 0;
+		endcase
+	end
 end
-//////////
 
-always @(posedge button)
+always @(clk)
 begin
-	if(mas_rdata==8'h23) led2_r <= ~led2_r;
-	if(sl_rdata==8'hf1) led3_r <= ~led3_r;
+	if(rx_s==tx_m)
+		led_r <= 1'b1;
+	else 
+		led_r <= 1'b0;
 end
+
+always @(posedge rst or posedge ss_s)
+begin
+	if(rst)
+		tx_s <= 8'h41;
+	else if(ss_s)
+	begin
+			tx_s <= tx_s + 1'b1;
+			if(tx_s>=8'h7E)
+				tx_s <= 8'h41;
+	end
+end
+
+always @(posedge rst or posedge en_m)
+begin
+	if(rst)
+		tx_m <= 8'h30;
+	else if(en_m)
+	begin
+			tx_m <= tx_m + 1'b1;
+			if(tx_m>=8'h39)
+				tx_m <= 8'h30;
+	end
+end
+
 
 endmodule
