@@ -58,9 +58,9 @@ module SPI_MASTER(rst, clk, en, sck, miso, mosi, tx, rx);
 
 parameter size = 8;
 parameter fclk = 50000000;
-parameter speed = 9600;
+parameter baudrate = 9600;
 
-localparam clk_size = (fclk/speed)/2-1;
+localparam clk_size = (fclk/baudrate)/2-1;
 
 input rst;
 input clk;
