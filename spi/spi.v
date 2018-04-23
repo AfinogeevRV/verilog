@@ -71,7 +71,7 @@ output mosi;
 input [size-1:0] tx;
 output [size-1:0] rx;
 
-reg [31:0] clk_cnt;
+reg [$clog2(clk_size)-1:0] clk_cnt;
 reg sck_r;
 assign sck = sck_r;
 reg [5:0] sck_cnt;
